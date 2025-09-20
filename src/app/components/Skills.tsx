@@ -10,18 +10,31 @@ interface Skill {
 
 const SkillItem = ({ skill }: { skill: Skill }) => (
     <motion.div
-        whileHover={{ y: -8, scale: 1.05 }}
-        transition={{ type: "spring", stiffness: 300, damping: 10 }}
+        whileHover="hover"
         className="flex flex-col items-center justify-start p-6 rounded-xl cursor-pointer"
     >
         {skill.icon && (
-            <Image
-                src={skill.icon}
-                alt={skill.name}
-                width={64}
-                height={64}
-                className="mb-3 object-contain"
-            />
+            <motion.div
+                variants={{
+                    hover: {
+                        y: [0, -15, 0],
+                        transition: {
+                            duration: 1,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                        },
+                    },
+                }}
+                className="mb-3 flex items-center justify-center w-20 h-20"
+            >
+                <Image
+                    src={skill.icon}
+                    alt={skill.name}
+                    width={64}
+                    height={64}
+                    className="object-contain"
+                />
+            </motion.div>
         )}
         <span className="text-gray-300 text-center text-base md:text-lg mt-3 font-medium">
             {skill.name}
@@ -34,12 +47,13 @@ export default function Skills() {
         {
             title: "Web Technologies",
             skills: [
-                { name: "HTML5", icon: "/html.png" },
-                { name: "CSS3", icon: "/css.png" },
                 { name: "JavaScript", icon: "/javascript.png" },
+                { name: "React", icon: "/react.png" },
+                { name: "Node", icon: "/node.png" },
+                { name: "Next.js", icon: "/next.svg" },
+                { name: "Typescript", icon: "/type.svg" },
+                { name: "HTML5", icon: "/html.png" },
                 { name: "Bootstrap", icon: "/bootstrap.png" },
-                { name: "React.js", icon: "/react.png" },
-                { name: "Node.js", icon: "/node.png" },
             ],
         },
         {
@@ -73,41 +87,62 @@ export default function Skills() {
         {
             title: "Databases",
             skills: [
-                { name: "MongoDB", icon: "/mongodb.png" },
+                { name: "MongoDB", icon: "/mongodb.svg" },
                 { name: "MySQL", icon: "/mysql.png" },
-                { name: "Redis", icon: "/redis.png" },
             ],
         },
     ];
 
     return (
         <section id="skills" className="w-full bg-black px-6 py-16 flex flex-col items-center">
+            {/* Main Skills Heading */}
             <div className="flex flex-col items-start w-full max-w-7xl mb-6">
                 <FadeInSection>
-                    <h2 className="text-5xl md:text-6xl font-bold text-white underline mb-2">
+                    <motion.h2
+                        className="text-2xl md:text-3xl lg:text-4xl font-bold text-white underline mb-2"
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                    >
                         Skills
-                    </h2>
+                    </motion.h2>
                 </FadeInSection>
             </div>
 
             <div className="skills-container flex flex-col w-full max-w-7xl gap-6">
-                {skillSections.map((section) => (
-                    <FadeInSection key={section.title}>
-                        <div className="skills-category bg-gray-800 border border-gray-700 rounded-2xl p-6 flex flex-col w-full">
-                            <h3 className="text-2xl md:text-3xl font-bold text-gray-300 mb-4">
-                                {section.title}
-                            </h3>
-                            <div
-                                className="skills-grid grid gap-4 w-full"
-                                style={{ gridTemplateColumns: `repeat(${section.skills.length}, minmax(0, 1fr))` }}
+                {skillSections.map((section) => {
+                    const headingColor = "text-gray-400"; // updated subsection heading color
+
+                    return (
+                        <FadeInSection key={section.title}>
+                            {/* Section Card with hover effect */}
+                            <motion.div
+                                className="skills-category border border-gray-700 rounded-2xl p-6 flex flex-col w-full"
+                                style={{ backgroundColor: "#121212" }}
+                                whileHover={{
+                                    scale: 1.02,
+                                    boxShadow: "0 8px 20px rgba(0, 0, 0, 0.5)",
+                                }}
+                                transition={{ type: "spring", stiffness: 200, damping: 20 }}
                             >
-                                {section.skills.map((skill) => (
-                                    <SkillItem key={skill.name} skill={skill} />
-                                ))}
-                            </div>
-                        </div>
-                    </FadeInSection>
-                ))}
+                                <h3 className={`text-xl md:text-2xl font-bold mb-4 ${headingColor}`}>
+                                    {section.title}
+                                </h3>
+                                <div
+                                    className="skills-grid grid gap-6 w-full place-items-center"
+                                    style={{
+                                        gridTemplateColumns: `repeat(auto-fit, minmax(120px, 1fr))`,
+                                    }}
+                                >
+                                    {section.skills.map((skill) => (
+                                        <SkillItem key={skill.name} skill={skill} />
+                                    ))}
+                                </div>
+                            </motion.div>
+                        </FadeInSection>
+                    );
+                })}
             </div>
         </section>
     );

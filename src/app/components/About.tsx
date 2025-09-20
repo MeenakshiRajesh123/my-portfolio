@@ -12,7 +12,7 @@ export default function About({ showTitle = true }: AboutProps) {
             <FadeInSection>
                 {/* Heading */}
                 {showTitle && (
-                    <h2 className="text-5xl font-bold text-white underline mb-8">
+                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white underline mb-8">
                         About Me
                     </h2>
                 )}

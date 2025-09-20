@@ -38,7 +38,7 @@ export default function Hero() {
             {/* Hero Background */}
             <motion.div
                 style={{ opacity: heroBgOpacity }}
-                className="fixed inset-0 z-10 overflow-hidden pointer-events-none"
+                className="fixed inset-0 z-0 overflow-hidden pointer-events-none" // lowered z-index
             >
                 <motion.div style={{ scale: seasideScale }} className="absolute inset-0">
                     <Image
@@ -82,7 +82,7 @@ export default function Hero() {
             {/* Black Overlay with About */}
             <motion.div
                 style={{ opacity: aboutOpacity }}
-                className="relative w-full bg-black flex items-center justify-center min-h-screen z-20 pointer-events-none"
+                className="relative w-full bg-black flex items-center justify-center min-h-screen z-10 pointer-events-none" // lowered z-index
             >
                 <div
                     id="about"
@@ -95,7 +95,7 @@ export default function Hero() {
             {/* Skills Section */}
             <div
                 id="skills-anchor"
-                className="w-full flex justify-center items-start pt-32 pb-32 bg-black z-0"
+                className="w-full flex justify-center items-start pt-32 pb-32 bg-black relative z-20" // raised z-index
             >
                 <div className="w-full max-w-7xl px-6">
                     <Skills />

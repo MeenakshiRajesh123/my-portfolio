@@ -45,7 +45,7 @@ const SkillItem = ({ skill }: { skill: Skill }) => (
 export default function Skills() {
     const skillSections: { title: string; skills: Skill[] }[] = [
         {
-            title: "Web Technologies",
+            title: "Web",
             skills: [
                 { name: "JavaScript", icon: "/javascript.png" },
                 { name: "React", icon: "/react.png" },
@@ -96,10 +96,10 @@ export default function Skills() {
     return (
         <section id="skills" className="w-full bg-black px-6 py-16 flex flex-col items-center">
             {/* Main Skills Heading */}
-            <div className="flex flex-col items-start w-full max-w-7xl mb-6">
+            <div className="flex flex-col items-center w-full max-w-7xl mb-6">
                 <FadeInSection>
                     <motion.h2
-                        className="text-2xl md:text-3xl lg:text-4xl font-bold text-white underline mb-2"
+                        className="text-2xl md:text-3xl lg:text-4xl font-bold text-white underline mb-6 text-center"
                         initial={{ opacity: 0, scale: 0.95 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
@@ -109,6 +109,7 @@ export default function Skills() {
                     </motion.h2>
                 </FadeInSection>
             </div>
+
 
             <div className="skills-container flex flex-col w-full max-w-7xl gap-6">
                 {skillSections.map((section) => {

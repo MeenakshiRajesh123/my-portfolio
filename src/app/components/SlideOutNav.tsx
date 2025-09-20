@@ -2,13 +2,14 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { ChevronLeft } from "lucide-react"; // arrow icon
+import { ChevronLeft } from "lucide-react";
 
 export default function SlideOutNav() {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
         <div className="fixed top-1/2 right-0 -translate-y-1/2 z-50 flex items-center">
+
             {/* Slide-out panel */}
             <motion.div
                 initial={{ x: "100%" }}

@@ -1,28 +1,43 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import Image from "next/image";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
+import { motion, useScroll } from "framer-motion";
 import About from "./About";
 import Skills from "./Skills";
 import Projects from "./Projects";
+import Image from "next/image";
+
+interface NavLink {
+    label: string;
+    href: string;
+}
 
 export default function Hero() {
     const ref = useRef<HTMLDivElement>(null);
+    const [showNavbar, setShowNavbar] = useState(true);
     const { scrollY } = useScroll();
+    const [lastScrollY, setLastScrollY] = useState(0);
 
-    const zoomStart = 0;
-    const zoomEnd = 500;
-    const aboutStart = 400;
-    const aboutEnd = 900;
+    const navLinks: NavLink[] = [
+        { label: "About", href: "#about" },
+        { label: "Skills", href: "#skills" },
+        { label: "Projects", href: "#projects" },
+        { label: "Contact", href: "#contact" },
+    ];
 
-    const bushesScale = useTransform(scrollY, [zoomStart, zoomEnd], [1, 1.8]);
-    const bushesTranslateY = useTransform(scrollY, [zoomStart, zoomEnd], [0, -80]);
-    const seasideScale = useTransform(scrollY, [zoomStart, zoomEnd], [1, 1.2]);
-    const heroTextOpacity = useTransform(scrollY, [zoomStart, zoomEnd * 0.6], [1, 0]);
-    const heroBgOpacity = useTransform(scrollY, [zoomStart, zoomEnd], [1, 0]);
-
-    const aboutOpacity = useTransform(scrollY, [aboutStart, aboutEnd], [0, 1]);
+    // Hide/show navbar on scroll
+    useEffect(() => {
+        return scrollY.onChange((latest) => {
+            if (latest === 0) {
+                setShowNavbar(true); // always visible at top
+            } else if (latest > lastScrollY && latest > 100) {
+                setShowNavbar(false); // scrolling down
+            } else if (latest < lastScrollY) {
+                setShowNavbar(true); // scrolling up
+            }
+            setLastScrollY(latest);
+        });
+    }, [scrollY, lastScrollY]);
 
     useEffect(() => {
         if (typeof window !== "undefined") {
@@ -32,64 +47,61 @@ export default function Hero() {
     }, []);
 
     return (
-        <section ref={ref} className="relative w-full overflow-x-hidden">
-
-            {/* Hero Background */}
-            <motion.div
-                style={{ opacity: heroBgOpacity }}
-                className="fixed inset-0 z-0 overflow-hidden pointer-events-none"
+        <div ref={ref} className="relative w-full bg-white overflow-x-hidden font-sans text-gray-900">
+            {/* Navbar */}
+            <motion.nav
+                initial={{ y: 0 }}
+                animate={{ y: showNavbar ? 0 : -100 }}
+                transition={{ type: "spring", stiffness: 200, damping: 25 }}
+                className="fixed top-0 left-0 w-full flex justify-between items-center px-8 py-4 z-50 bg-white"
             >
-                <motion.div style={{ scale: seasideScale }} className="absolute inset-0">
-                    <Image src="/seaside.jpg" alt="Seaside" fill className="object-cover" priority />
-                </motion.div>
-                <motion.div
-                    style={{ scale: bushesScale, y: bushesTranslateY }}
-                    className="absolute inset-0"
-                >
-                    <Image src="/bushes.png" alt="Bushes" fill className="object-cover object-top" priority />
-                </motion.div>
-
-                {/* Hero Text */}
-                <motion.div
-                    style={{ opacity: heroTextOpacity }}
-                    className="absolute inset-0 flex flex-col justify-center items-center text-center px-4 pointer-events-auto"
-                >
-                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
-                        Hey, I'm Meenakshi
-                    </h1>
-                    <p className="mt-2 text-lg md:text-xl lg:text-2xl text-gray-200">
-                        Full Stack Developer | Software Developer
-                    </p>
-                </motion.div>
-            </motion.div>
-
-            {/* Spacer for Hero */}
-            <div className="h-screen" />
-
-            {/* About Section */}
-            <section id="about" className="w-full bg-black flex justify-center items-start py-32">
-                <div className="w-full max-w-7xl px-6">
-                    <About />
+                {/* Top Left Icon */}
+                <div className="flex items-center">
+                    <Image src="/icon.png" alt="Logo" width={100} height={100} /> {/* bigger icon */}
                 </div>
+
+                {/* Top Right Links */}
+                <div className="flex space-x-8">
+                    {navLinks.map((link) => (
+                        <a
+                            key={link.href}
+                            href={link.href}
+                            className="text-gray-900 font-medium hover:text-purple-600 transition-colors duration-300"
+                        >
+                            {link.label}
+                        </a>
+                    ))}
+                </div>
+            </motion.nav>
+
+            {/* Intro Section */}
+            <section className="w-full flex flex-col items-center justify-center pt-[80px] pb-16 text-center">
+                <About showTitle={true} />
             </section>
 
             {/* Skills Section */}
-            <section id="skills"
-                style={{ scrollMarginTop: "-210px" }}
-                className="w-full bg-black flex justify-center items-start py-32">
+            <section
+                id="skills"
+                className="w-full flex justify-center items-start py-32"
+                style={{ scrollMarginTop: "80px" }}
+            >
                 <div className="w-full max-w-7xl px-6">
                     <Skills />
                 </div>
             </section>
 
             {/* Projects Section */}
-            <section id="projects"
-                style={{ scrollMarginTop: "-170px" }}
-                className="scroll-mt-0 w-full bg-black flex justify-center items-start py-32">
+            <section
+                id="projects"
+                className="w-full flex justify-center items-start py-32"
+                style={{ scrollMarginTop: "80px" }}
+            >
                 <div className="w-full max-w-7xl px-6">
                     <Projects />
                 </div>
             </section>
-        </section>
+
+
+        </div>
     );
 }

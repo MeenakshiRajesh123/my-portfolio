@@ -1,150 +1,169 @@
 "use client";
-import { FadeInSection } from "./FadeInSection";
+
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
 interface Skill {
     name: string;
-    icon?: string;
+    icon: string;
+    category: "frontend" | "backend" | "tools";
 }
 
-const SkillItem = ({ skill }: { skill: Skill }) => (
-    <motion.div
-        whileHover="hover"
-        className="flex flex-col items-center justify-start p-6 rounded-xl cursor-pointer"
-    >
-        {skill.icon && (
-            <motion.div
-                variants={{
-                    hover: {
-                        y: [0, -15, 0],
-                        transition: {
-                            duration: 1,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                        },
-                    },
-                }}
-                className="mb-3 flex items-center justify-center w-20 h-20"
-            >
-                <Image
-                    src={skill.icon}
-                    alt={skill.name}
-                    width={64}
-                    height={64}
-                    className="object-contain"
-                />
-            </motion.div>
-        )}
-        <span className="text-gray-300 text-center text-base md:text-lg mt-3 font-medium">
-            {skill.name}
-        </span>
-    </motion.div>
-);
-
 export default function Skills() {
-    const skillSections: { title: string; skills: Skill[] }[] = [
-        {
-            title: "Web",
-            skills: [
-                { name: "JavaScript", icon: "/javascript.png" },
-                { name: "React", icon: "/react.png" },
-                { name: "Node", icon: "/node.png" },
-                { name: "Next.js", icon: "/next.svg" },
-                { name: "Typescript", icon: "/type.svg" },
-                { name: "HTML5", icon: "/html.png" },
-                { name: "Bootstrap", icon: "/bootstrap.png" },
-            ],
-        },
-        {
-            title: "Tools & Technologies",
-            skills: [
-                { name: "VS Code", icon: "/vscode.png" },
-                { name: "Git", icon: "/git.png" },
-                { name: "Postman", icon: "/postman.png" },
-                { name: "Power BI", icon: "/powerbi.png" },
-                { name: "Kali Linux", icon: "/kali.png" },
-            ],
-        },
-        {
-            title: "Languages",
-            skills: [
-                { name: "Python", icon: "/python.png" },
-                { name: "C", icon: "/c.png" },
-                { name: "C++", icon: "/cpp.png" },
-                { name: "Java", icon: "/java.png" },
-            ],
-        },
-        {
-            title: "Cybersecurity",
-            skills: [
-                { name: "Security Analysis", icon: "/security.png" },
-                { name: "Encryption", icon: "/encryption.png" },
-                { name: "Incident Response", icon: "/incident.png" },
-                { name: "Penetration Testing", icon: "/penetration.png" },
-            ],
-        },
-        {
-            title: "Databases",
-            skills: [
-                { name: "MongoDB", icon: "/mongodb.svg" },
-                { name: "MySQL", icon: "/mysql.png" },
-            ],
-        },
+    const [activeCategory, setActiveCategory] =
+        useState<Skill["category"]>("frontend");
+
+    const skills: Skill[] = [
+        // Frontend
+        { name: "JavaScript", icon: "/javascript.png", category: "frontend" },
+        { name: "React", icon: "/react.png", category: "frontend" },
+        { name: "Next.js", icon: "/next.svg", category: "frontend" },
+        { name: "TypeScript", icon: "/type.svg", category: "frontend" },
+        { name: "HTML5", icon: "/html.png", category: "frontend" },
+        { name: "Bootstrap", icon: "/bootstrap.png", category: "frontend" },
+
+        // Backend
+        { name: "Node", icon: "/node.png", category: "backend" },
+        { name: "Python", icon: "/python.png", category: "backend" },
+        { name: "Java", icon: "/java.png", category: "backend" },
+        { name: "C", icon: "/c.png", category: "backend" },
+        { name: "C++", icon: "/cpp.png", category: "backend" },
+        { name: "MongoDB", icon: "/mongodb.png", category: "backend" },
+        { name: "MySQL", icon: "/mysql.png", category: "backend" },
+
+        // Tools
+        { name: "VS Code", icon: "/vscode.png", category: "tools" },
+        { name: "Git", icon: "/git.png", category: "tools" },
+        { name: "Postman", icon: "/postman.png", category: "tools" },
+        { name: "Power BI", icon: "/powerbi.png", category: "tools" },
+        { name: "Kali Linux", icon: "/kali.png", category: "tools" },
     ];
 
+    const nodeIcons: Record<Skill["category"], string> = {
+        frontend: "/frontend.png",
+        backend: "/backend.png",
+        tools: "/tools.png",
+    };
+
+    const filteredSkills = skills.filter(
+        (skill) => skill.category === activeCategory
+    );
+
     return (
-        <section id="skills" className="w-full bg-black px-6 py-16 flex flex-col items-center">
-            {/* Main Skills Heading */}
-            <div className="flex flex-col items-center w-full max-w-7xl mb-6">
-                <FadeInSection>
-                    <motion.h2
-                        className="text-2xl md:text-3xl lg:text-4xl font-bold text-white underline mb-6 text-center"
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
+        <section
+            id="skills"
+            className="w-screen relative flex flex-col items-center py-24 overflow-hidden"
+        >
+            {/* Heading */}
+            <motion.h2
+                className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+            >
+                What I Bring to the Table
+                <span className="text-[#6F00FF]">.</span>
+            </motion.h2>
+
+            {/* Gradient background with fixed height */}
+            <motion.div
+                className="w-full relative flex flex-col justify-center items-center"
+                style={{
+                    background: "linear-gradient(180deg, #6F00FF 0%, #F0E5FF 100%)",
+                    clipPath: "polygon(0 5%, 100% 0%, 100% 100%, 0% 100%)",
+                    minHeight: "500px", // fixed height for all categories
+                }}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, ease: "easeOut" }}
+            >
+                {/* Purple curved stroke */}
+                <div className="absolute w-full h-64 top-1/2 -translate-y-1/2 pointer-events-none">
+                    <svg
+                        className="w-full h-full"
+                        viewBox="0 0 1440 320"
+                        xmlns="http://www.w3.org/2000/svg"
                     >
-                        Skills
-                    </motion.h2>
-                </FadeInSection>
-            </div>
+                        <path
+                            fill="#6F00FF"
+                            fillOpacity="0.15"
+                            d="M0,128L1440,32L1440,320L0,320Z"
+                        />
+                    </svg>
+                </div>
 
+                {/* Category title slightly moved up */}
+                <motion.h3
+                    key={activeCategory}
+                    className="text-xl font-semibold text-white mb-6 -translate-y-4"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4 }}
+                >
+                    {activeCategory.charAt(0).toUpperCase() + activeCategory.slice(1)}
+                </motion.h3>
 
-            <div className="skills-container flex flex-col w-full max-w-7xl gap-6">
-                {skillSections.map((section) => {
-                    const headingColor = "text-gray-400"; // updated subsection heading color
+                {/* Skills icons centered vertically */}
+                <motion.div className="flex flex-wrap justify-center items-center gap-10 relative z-10 max-w-3xl">
+                    {filteredSkills.map((skill) => (
+                        <motion.div
+                            key={skill.name}
+                            animate={{ y: [0, -10, 0] }} // float effect
+                            transition={{
+                                duration: 3,
+                                repeat: Infinity,
+                                ease: "easeInOut",
+                            }}
+                            whileHover={{ scale: 1.15 }}
+                            className="w-20 h-20 flex items-center justify-center"
+                        >
+                            <Image
+                                src={skill.icon}
+                                alt={skill.name}
+                                width={64}
+                                height={64}
+                                className="object-contain"
+                            />
+                        </motion.div>
+                    ))}
+                </motion.div>
 
-                    return (
-                        <FadeInSection key={section.title}>
-                            {/* Section Card with hover effect */}
-                            <motion.div
-                                className="skills-category border border-gray-700 rounded-2xl p-6 flex flex-col w-full"
-                                style={{ backgroundColor: "#121212" }}
-                                whileHover={{
-                                    scale: 1.02,
-                                    boxShadow: "0 8px 20px rgba(0, 0, 0, 0.5)",
-                                }}
-                                transition={{ type: "spring", stiffness: 200, damping: 20 }}
-                            >
-                                <h3 className={`text-xl md:text-2xl font-bold mb-4 ${headingColor}`}>
-                                    {section.title}
-                                </h3>
-                                <div
-                                    className="skills-grid grid gap-6 w-full place-items-center"
-                                    style={{
-                                        gridTemplateColumns: `repeat(auto-fit, minmax(120px, 1fr))`,
+                {/* Node connectors */}
+                <div className="absolute bottom-6 w-full flex justify-center">
+                    <div className="relative w-full max-w-2xl flex justify-between items-center">
+                        {/* White pipeline with purple border */}
+                        <div className="absolute top-1/2 left-0 w-full h-2 bg-white border border-purple-500 rounded-full -translate-y-1/2"></div>
+
+                        {(["frontend", "backend", "tools"] as Skill["category"][]).map(
+                            (cat) => (
+                                <motion.button
+                                    key={cat}
+                                    onClick={() => setActiveCategory(cat)}
+                                    animate={{
+                                        scale: activeCategory === cat ? 1.3 : 1,
                                     }}
+                                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                                    className={`relative z-10 w-14 h-14 rounded-full flex items-center justify-center p-2 transition
+                  ${activeCategory === cat
+                                            ? "bg-gradient-to-br from-purple-500 to-indigo-500"
+                                            : "bg-gray-200"
+                                        }`}
                                 >
-                                    {section.skills.map((skill) => (
-                                        <SkillItem key={skill.name} skill={skill} />
-                                    ))}
-                                </div>
-                            </motion.div>
-                        </FadeInSection>
-                    );
-                })}
-            </div>
+                                    <Image
+                                        src={nodeIcons[cat]}
+                                        alt={cat}
+                                        width={28}
+                                        height={28}
+                                        className="object-contain"
+                                    />
+                                </motion.button>
+                            )
+                        )}
+                    </div>
+                </div>
+            </motion.div>
         </section>
     );
 }

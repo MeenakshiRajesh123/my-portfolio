@@ -82,12 +82,10 @@ export default function Hero() {
             {/* Skills Section */}
             <section
                 id="skills"
-                className="w-full flex justify-center items-start py-32"
+                className="w-full py-32"
                 style={{ scrollMarginTop: "80px" }}
             >
-                <div className="w-full max-w-7xl px-6">
-                    <Skills />
-                </div>
+                <Skills />
             </section>
 
             {/* Projects Section */}

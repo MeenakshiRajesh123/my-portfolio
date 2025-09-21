@@ -48,3 +48,8 @@ html {
 html {
   scroll-behavior: smooth;
 }
+
+/* globals.css */
+.shadow-purple-glow {
+  box-shadow: 0 20px 60px rgba(111, 0, 255, 0.15);
+}

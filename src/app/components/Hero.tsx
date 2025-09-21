@@ -64,15 +64,23 @@ export default function Hero() {
                 {/* Top Right Links */}
                 <div className="flex space-x-8">
                     {navLinks.map((link) => (
-                        <a
+                        <button
                             key={link.href}
-                            href={link.href}
-                            className="text-gray-900 font-medium hover:text-purple-600 transition-colors duration-300"
+                            onClick={() => {
+                                const target = document.querySelector(link.href);
+                                if (target) {
+                                    target.scrollIntoView({ behavior: "smooth" });
+                                }
+                                // force-hide after scroll
+                                setTimeout(() => setShowNavbar(false), 700);
+                            }}
+                            className="text-gray-900 font-medium hover:text-purple-600 transition-colors duration-300 focus:outline-none"
                         >
                             {link.label}
-                        </a>
+                        </button>
                     ))}
                 </div>
+
             </motion.nav>
 
             {/* Intro Section */}
@@ -82,7 +90,6 @@ export default function Hero() {
 
             {/* Skills Section */}
             <section
-                id="skills"
                 className="w-full py-32"
                 style={{ scrollMarginTop: "80px" }}
             >
@@ -91,18 +98,18 @@ export default function Hero() {
 
             {/* Projects Section */}
             <section
-                id="projects"
                 className="w-full flex justify-center items-start py-32"
                 style={{ scrollMarginTop: "80px" }}
             >
-                <div className="w-full max-w-7xl px-6">
+                <div
+                    id="projects"
+                    className="w-full max-w-7xl px-6">
                     <Projects />
                 </div>
             </section>
 
             {/* Contact Section */}
             <section
-                id="contact"
                 className="w-full flex justify-center items-start py-32 md:pb-0"
                 style={{ scrollMarginTop: "80px" }}
             >

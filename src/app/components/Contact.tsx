@@ -16,6 +16,7 @@ export default function Contact() {
         <div className="w-full flex flex-col items-center">
             {/* Heading outside purple div */}
             <motion.h2
+                id="contact"
                 className="text-3xl md:text-4xl font-bold mb-12 text-black text-center"
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -28,7 +29,6 @@ export default function Contact() {
 
             {/* Purple Contact Section */}
             <section
-                id="contact"
                 className="w-screen bg-[#6F00FF] text-white flex flex-col items-center py-32"
                 style={{ scrollMarginTop: "80px" }}
             >

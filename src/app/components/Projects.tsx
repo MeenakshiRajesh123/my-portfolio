@@ -16,7 +16,7 @@ const projects: Project[] = [
     {
         title: "Portfolio Website",
         description: "Personal portfolio showcasing skills and projects. Showcases development projects and experience.",
-        tech: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+        tech: ["Next.js", "TypeScript", "React", "Tailwind CSS"],
         githubLink: "https://github.com/MeenakshiRajesh123/my-portfolio",
         image: "/portfolio.png",
     },

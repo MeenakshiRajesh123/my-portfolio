@@ -52,11 +52,11 @@ export default function Skills() {
 
     return (
         <section
-            id="skills"
             className="w-screen relative flex flex-col items-center py-24 overflow-hidden"
         >
             {/* Heading */}
             <motion.h2
+                id="skills"
                 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -66,6 +66,7 @@ export default function Skills() {
                 What I Bring to the Table
                 <span className="text-[#6F00FF]">.</span>
             </motion.h2>
+
 
             {/* Gradient background with fixed height */}
             <motion.div
@@ -80,7 +81,8 @@ export default function Skills() {
                 transition={{ duration: 1, ease: "easeOut" }}
             >
                 {/* Purple curved stroke */}
-                <div className="absolute w-full h-64 top-1/2 -translate-y-1/2 pointer-events-none">
+                <div
+                    className="absolute w-full h-64 top-1/2 -translate-y-1/2 pointer-events-none">
                     <svg
                         className="w-full h-full"
                         viewBox="0 0 1440 320"

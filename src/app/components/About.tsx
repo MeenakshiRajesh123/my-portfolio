@@ -1,11 +1,14 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Easing } from "framer-motion";
 import Image from "next/image";
 
 interface AboutProps {
     showTitle?: boolean;
 }
+
+// Define cubic-bezier easing
+const easeOut: Easing = [0.42, 0, 0.58, 1];
 
 export default function About({ showTitle = true }: AboutProps) {
     const introWords = ["Fullstack", "Developer", "|", "Cybersecurity", "Enthusiast"];
@@ -18,7 +21,7 @@ export default function About({ showTitle = true }: AboutProps) {
             transition: {
                 delay: i * 0.2,
                 duration: 0.5,
-                ease: "easeOut",
+                ease: easeOut, // use the cubic-bezier easing
             },
         }),
     };
@@ -47,11 +50,12 @@ export default function About({ showTitle = true }: AboutProps) {
                     </p>
                 </div>
 
+                {/* Animated "I code and sometimes it works!" */}
                 <motion.p
                     className="text-[24px] text-center mb-6"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, ease: "easeOut", delay: introWords.length * 0.2 }}
+                    transition={{ duration: 0.6, ease: easeOut, delay: introWords.length * 0.2 }}
                 >
                     I <span className="text-[#6F00FF] font-semibold">code</span> and sometimes it works!
                 </motion.p>

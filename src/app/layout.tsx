@@ -18,8 +18,6 @@ export const metadata: Metadata = {
   description: "Portfolio of Meenakshi Rajesh",
   icons: {
     icon: "/avatar.png",
-    apple: "/avatar.png",
-    shortcut: "/avatar.png",
   },
 };
 

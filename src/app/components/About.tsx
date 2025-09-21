@@ -49,17 +49,7 @@ export default function About({ showTitle = true }: AboutProps) {
                     I code and sometimes it works!
                 </p>
 
-                {/* Avatar */}
-                <div className="mt-4">
-                    <Image
-                        src="/avatar.png"
-                        alt="Meenakshi Avatar"
-                        width={200}
-                        height={200}
-                        className="rounded-full object-cover"
-                    />
-                </div>
-
+                {/* Desk image */}
                 <div id="about" className="mt-8 flex justify-center">
                     <Image
                         src="/desk.png"

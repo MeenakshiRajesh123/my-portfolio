@@ -5,6 +5,7 @@ import { motion, useScroll } from "framer-motion";
 import About from "./About";
 import Skills from "./Skills";
 import Projects from "./Projects";
+import Contact from "./Contact";
 import Image from "next/image";
 
 interface NavLink {
@@ -97,6 +98,15 @@ export default function Hero() {
                 <div className="w-full max-w-7xl px-6">
                     <Projects />
                 </div>
+            </section>
+
+            {/* Contact Section */}
+            <section
+                id="contact"
+                className="w-full flex justify-center items-start py-32 md:pb-0"
+                style={{ scrollMarginTop: "80px" }}
+            >
+                <Contact />
             </section>
 
 

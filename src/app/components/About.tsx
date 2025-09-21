@@ -11,7 +11,7 @@ interface AboutProps {
 const easeOut: Easing = [0.42, 0, 0.58, 1];
 
 export default function About({ showTitle = true }: AboutProps) {
-    const introWords = ["Fullstack", "Developer", "|", "Cybersecurity", "Enthusiast"];
+    const introWords = ["FullStack", "Developer", "|", "Cybersecurity", "Enthusiast"];
 
     const wordVariants = {
         hidden: { opacity: 0, y: 20 },
@@ -33,7 +33,7 @@ export default function About({ showTitle = true }: AboutProps) {
                 <div className="mb-6 text-center">
                     <p className="text-[34px] font-bold">
                         {introWords.map((word, i) => {
-                            const isPurple = word === "Fullstack" || word === "Cybersecurity";
+                            const isPurple = word === "FullStack" || word === "Cybersecurity";
                             return (
                                 <motion.span
                                     key={i}

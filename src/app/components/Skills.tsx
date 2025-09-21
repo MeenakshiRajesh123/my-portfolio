@@ -27,7 +27,6 @@ export default function Skills() {
         { name: "Node", icon: "/node.png", category: "backend" },
         { name: "Python", icon: "/python.png", category: "backend" },
         { name: "Java", icon: "/java.png", category: "backend" },
-        { name: "C", icon: "/c.png", category: "backend" },
         { name: "C++", icon: "/cpp.png", category: "backend" },
         { name: "MongoDB", icon: "/mongodb.png", category: "backend" },
         { name: "MySQL", icon: "/mysql.png", category: "backend" },

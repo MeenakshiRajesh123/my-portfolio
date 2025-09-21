@@ -23,7 +23,7 @@ const projects: Project[] = [
     {
         title: "Chiptune Music Generator",
         description: "Generates nostalgic 8-bit music using a genetic algorithm. Outputs retro square-wave audio.",
-        tech: ["Python", "Genetic Algorithm", "MIDI", "Audio Synthesis"],
+        tech: ["Python", "Genetic Algorithm", "MIDI"],
         githubLink: "https://github.com/MeenakshiRajesh123/Chiptunes",
         image: "/chiptune.png",
     },

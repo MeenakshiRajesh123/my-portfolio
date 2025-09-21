@@ -8,7 +8,7 @@ interface AboutProps {
 }
 
 export default function About({ showTitle = true }: AboutProps) {
-    const introWords = ["Full", "Stack", "Developer", "|", "Software", "Developer"];
+    const introWords = ["Fullstack", "Developer", "|", "Cybersecurity", "Enthusiast"];
 
     const wordVariants = {
         hidden: { opacity: 0, y: 20 },
@@ -29,25 +29,32 @@ export default function About({ showTitle = true }: AboutProps) {
                 {/* Full Stack Developer Animated Wave */}
                 <div className="mb-6 text-center">
                     <p className="text-[34px] font-bold">
-                        {introWords.map((word, i) => (
-                            <motion.span
-                                key={i}
-                                custom={i}
-                                initial="hidden"
-                                animate="visible"
-                                variants={wordVariants}
-                                className="inline-block mr-3"
-                            >
-                                {word}
-                            </motion.span>
-                        ))}
+                        {introWords.map((word, i) => {
+                            const isPurple = word === "Fullstack" || word === "Cybersecurity";
+                            return (
+                                <motion.span
+                                    key={i}
+                                    custom={i}
+                                    initial="hidden"
+                                    animate="visible"
+                                    variants={wordVariants}
+                                    className={`inline-block mr-3 ${isPurple ? "text-[#6F00FF]" : ""}`}
+                                >
+                                    {word}
+                                </motion.span>
+                            );
+                        })}
                     </p>
                 </div>
 
-                {/* I code text below */}
-                <p className="text-[24px] text-center mb-6">
-                    I code and sometimes it works!
-                </p>
+                <motion.p
+                    className="text-[24px] text-center mb-6"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, ease: "easeOut", delay: introWords.length * 0.2 }}
+                >
+                    I <span className="text-[#6F00FF] font-semibold">code</span> and sometimes it works!
+                </motion.p>
 
                 {/* Desk image */}
                 <div id="about" className="mt-8 flex justify-center">
@@ -68,10 +75,10 @@ export default function About({ showTitle = true }: AboutProps) {
                         Hi! I’m <span className="font-semibold">Meenakshi. Nice to meet you!</span>
                     </h2>
                     <p className="text-lg leading-relaxed mb-4">
-                        I’m a 4th-year Computer Science student with a passion for building web applications, exploring AI, and creating cool software that (hopefully) doesn’t break. I love solving problems, experimenting with code, and occasionally writing things that actually work on the first try, rare but it happens!
+                        I’m a 4th-year Computer Science student with a passion for building web applications, exploring AI, and diving into cybersecurity. I love solving problems and experimenting with code that actually work on the first try, rare but it happens!
                     </p>
                     <p className="text-lg leading-relaxed">
-                        When I’m not coding, you’ll find me sharing memes with fellow devs, taking pictures, or pretending I fully understand AI (still learning!).
+                        When I’m not coding, you’ll find me sharing memes with fellow devs, taking pictures, or exploring the world one trip at a time.
                     </p>
                 </div>
             </div>

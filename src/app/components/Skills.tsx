@@ -36,7 +36,6 @@ export default function Skills() {
         { name: "Git", icon: "/git.png", category: "tools" },
         { name: "Postman", icon: "/postman.png", category: "tools" },
         { name: "Power BI", icon: "/powerbi.png", category: "tools" },
-        { name: "Kali Linux", icon: "/kali.png", category: "tools" },
     ];
 
     const nodeIcons: Record<Skill["category"], string> = {

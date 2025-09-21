@@ -106,17 +106,14 @@ export default function Skills() {
                     {activeCategory.charAt(0).toUpperCase() + activeCategory.slice(1)}
                 </motion.h3>
 
-                {/* Skills icons centered vertically */}
                 <motion.div className="flex flex-wrap justify-center items-center gap-10 relative z-10 max-w-3xl">
                     {filteredSkills.map((skill) => (
                         <motion.div
                             key={skill.name}
-                            animate={{ y: [0, -10, 0] }} // float effect
-                            transition={{
-                                duration: 3,
-                                repeat: Infinity,
-                                ease: "easeInOut",
-                            }}
+                            initial={{ opacity: 0, y: 20 }}          // same as heading
+                            whileInView={{ opacity: 1, y: 0 }}       // same as heading
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6 }}
                             whileHover={{ scale: 1.15 }}
                             className="w-20 h-20 flex items-center justify-center"
                         >

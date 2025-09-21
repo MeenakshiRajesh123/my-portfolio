@@ -17,7 +17,9 @@ export const metadata: Metadata = {
   title: "Meenakshi Rajesh | Portfolio",
   description: "Portfolio of Meenakshi Rajesh",
   icons: {
-    icon: "/favicon.ico",
+    icon: "/avatar.png",
+    apple: "/avatar.png",
+    shortcut: "/avatar.png",
   },
 };
 

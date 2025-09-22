@@ -84,38 +84,26 @@ export default function Hero() {
             </motion.nav>
 
             {/* Intro Section */}
-            <section className="w-full flex flex-col items-center justify-center pt-[80px] pb-16 text-center">
+            <section className="w-full flex flex-col items-center justify-center pt-[80px] pb-8 text-center">
                 <About showTitle={true} />
             </section>
 
             {/* Skills Section */}
-            <section
-                className="w-full py-32"
-                style={{ scrollMarginTop: "80px" }}
-            >
+            <section className="w-full py-16" style={{ scrollMarginTop: "80px" }}>
                 <Skills />
             </section>
 
             {/* Projects Section */}
-            <section
-                className="w-full flex justify-center items-start py-32"
-                style={{ scrollMarginTop: "80px" }}
-            >
-                <div
-                    id="projects"
-                    className="w-full max-w-7xl px-6">
+            <section className="w-full flex justify-center items-start py-16" style={{ scrollMarginTop: "80px" }}>
+                <div id="projects" className="w-full max-w-7xl px-6">
                     <Projects />
                 </div>
             </section>
 
             {/* Contact Section */}
-            <section
-                className="w-full flex justify-center items-start py-32 md:pb-0"
-                style={{ scrollMarginTop: "80px" }}
-            >
+            <section className="w-full flex justify-center items-start py-16 md:pb-0" style={{ scrollMarginTop: "80px" }}>
                 <Contact />
             </section>
-
 
         </div>
     );

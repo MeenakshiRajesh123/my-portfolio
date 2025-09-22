@@ -72,7 +72,7 @@ export default function Contact() {
 
                     {/* Footer */}
                     <p className="text-sm opacity-80">
-                        Designed & built by <span className="font-semibold">Meenakshi Rajesh</span> • ©2025 present, All rights reserved
+                        Built by <span className="font-semibold">Meenakshi Rajesh</span> • ©2025 present.
                     </p>
                 </div>
             </section>

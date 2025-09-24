@@ -66,36 +66,18 @@ export default function Skills() {
                 <span className="text-[#6F00FF]">.</span>
             </motion.h2>
 
-
-            {/* Gradient background with fixed height */}
+            {/* Changed Background Div */}
             <motion.div
-                className="w-full relative flex flex-col justify-center items-center"
+                className="w-full relative flex flex-col justify-center items-center rounded-xl shadow-lg p-8"
                 style={{
                     background: "linear-gradient(180deg, #6F00FF 0%, #F0E5FF 100%)",
-                    clipPath: "polygon(0 5%, 100% 0%, 100% 100%, 0% 100%)",
-                    minHeight: "500px", // fixed height for all categories
+                    minHeight: "500px",
                 }}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, ease: "easeOut" }}
             >
-                {/* Purple curved stroke */}
-                <div
-                    className="absolute w-full h-64 top-1/2 -translate-y-1/2 pointer-events-none">
-                    <svg
-                        className="w-full h-full"
-                        viewBox="0 0 1440 320"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            fill="#6F00FF"
-                            fillOpacity="0.15"
-                            d="M0,128L1440,32L1440,320L0,320Z"
-                        />
-                    </svg>
-                </div>
-
-                {/* Category title slightly moved up */}
+                {/* Category title */}
                 <motion.h3
                     key={activeCategory}
                     className="text-xl font-semibold text-white mb-6 -translate-y-4"
@@ -103,15 +85,17 @@ export default function Skills() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4 }}
                 >
-                    {activeCategory.charAt(0).toUpperCase() + activeCategory.slice(1)}
+                    {activeCategory.charAt(0).toUpperCase() +
+                        activeCategory.slice(1)}
                 </motion.h3>
 
+                {/* Icons container */}
                 <motion.div className="flex flex-wrap justify-center items-center gap-10 relative z-10 max-w-3xl">
                     {filteredSkills.map((skill) => (
                         <motion.div
                             key={skill.name}
-                            initial={{ opacity: 0, y: 20 }}          // same as heading
-                            whileInView={{ opacity: 1, y: 0 }}       // same as heading
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6 }}
                             whileHover={{ scale: 1.15 }}
@@ -144,7 +128,7 @@ export default function Skills() {
                                     }}
                                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
                                     className={`relative z-10 w-14 h-14 rounded-full flex items-center justify-center p-2 transition
-                  ${activeCategory === cat
+                                        ${activeCategory === cat
                                             ? "bg-gradient-to-br from-purple-500 to-indigo-500"
                                             : "bg-gray-200"
                                         }`}

@@ -19,9 +19,9 @@ export default function Skills() {
         { name: "JavaScript", icon: "/javascript.png", category: "frontend" },
         { name: "React", icon: "/react.png", category: "frontend" },
         { name: "Next.js", icon: "/next.svg", category: "frontend" },
+        { name: "Bootstrap", icon: "/bootstrap.png", category: "frontend" },
         { name: "TypeScript", icon: "/type.svg", category: "frontend" },
         { name: "HTML5", icon: "/html.png", category: "frontend" },
-        { name: "Bootstrap", icon: "/bootstrap.png", category: "frontend" },
 
         // Backend
         { name: "Node", icon: "/node.png", category: "backend" },

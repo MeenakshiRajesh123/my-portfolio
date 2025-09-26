@@ -53,7 +53,7 @@ export default function Hero() {
             {/* Full-page doodle background */}
             <div className="fixed top-0 left-0 w-full h-full z-0 pointer-events-none">
                 <Image
-                    src="/doodle.png"
+                    src="/doodle3.png"
                     alt="Doodle Background"
                     fill
                     className="object-cover opacity-20"

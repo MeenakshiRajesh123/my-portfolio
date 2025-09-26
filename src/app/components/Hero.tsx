@@ -30,11 +30,11 @@ export default function Hero() {
     useEffect(() => {
         return scrollY.onChange((latest) => {
             if (latest === 0) {
-                setShowNavbar(true); // always visible at top
+                setShowNavbar(true);
             } else if (latest > lastScrollY && latest > 100) {
-                setShowNavbar(false); // scrolling down
+                setShowNavbar(false);
             } else if (latest < lastScrollY) {
-                setShowNavbar(true); // scrolling up
+                setShowNavbar(true);
             }
             setLastScrollY(latest);
         });
@@ -49,6 +49,17 @@ export default function Hero() {
 
     return (
         <div ref={ref} className="relative w-full bg-white overflow-x-hidden font-sans text-gray-900">
+
+            {/* Full-page doodle background */}
+            <div className="fixed top-0 left-0 w-full h-full z-0 pointer-events-none">
+                <Image
+                    src="/doodle.png"
+                    alt="Doodle Background"
+                    fill
+                    className="object-cover opacity-20"
+                />
+            </div>
+
             {/* Navbar */}
             <motion.nav
                 initial={{ y: 0 }}
@@ -58,7 +69,7 @@ export default function Hero() {
             >
                 {/* Top Left Icon */}
                 <div className="flex items-center">
-                    <Image src="/icon.png" alt="Logo" width={100} height={100} /> {/* bigger icon */}
+                    <Image src="/icon.png" alt="Logo" width={100} height={100} />
                 </div>
 
                 {/* Top Right Links */}
@@ -71,7 +82,6 @@ export default function Hero() {
                                 if (target) {
                                     target.scrollIntoView({ behavior: "smooth" });
                                 }
-                                // force-hide after scroll
                                 setTimeout(() => setShowNavbar(false), 700);
                             }}
                             className="text-gray-900 font-medium hover:text-purple-600 transition-colors duration-300 focus:outline-none"
@@ -80,31 +90,32 @@ export default function Hero() {
                         </button>
                     ))}
                 </div>
-
             </motion.nav>
 
-            {/* Intro Section */}
-            <section className="w-full flex flex-col items-center justify-center pt-[80px] pb-8 text-center">
-                <About showTitle={true} />
-            </section>
+            {/* Page Content */}
+            <div className="relative z-10">
+                {/* Intro Section */}
+                <section className="w-full flex flex-col items-center justify-center pt-[80px] pb-8 text-center">
+                    <About showTitle={true} />
+                </section>
 
-            {/* Skills Section */}
-            <section className="w-full py-16" style={{ scrollMarginTop: "80px" }}>
-                <Skills />
-            </section>
+                {/* Skills Section */}
+                <section className="w-full py-16" style={{ scrollMarginTop: "80px" }}>
+                    <Skills />
+                </section>
 
-            {/* Projects Section */}
-            <section className="w-full flex justify-center items-start py-16" style={{ scrollMarginTop: "80px" }}>
-                <div id="projects" className="w-full max-w-7xl px-6">
-                    <Projects />
-                </div>
-            </section>
+                {/* Projects Section */}
+                <section className="w-full flex justify-center items-start py-16" style={{ scrollMarginTop: "80px" }}>
+                    <div id="projects" className="w-full max-w-7xl px-6">
+                        <Projects />
+                    </div>
+                </section>
 
-            {/* Contact Section */}
-            <section className="w-full flex justify-center items-start py-16 md:pb-0" style={{ scrollMarginTop: "80px" }}>
-                <Contact />
-            </section>
-
+                {/* Contact Section */}
+                <section className="w-full flex justify-center items-start py-16 md:pb-0" style={{ scrollMarginTop: "80px" }}>
+                    <Contact />
+                </section>
+            </div>
         </div>
     );
 }

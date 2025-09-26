@@ -61,7 +61,7 @@ export default function Projects() {
     return (
         <section
             id="projects"
-            className="w-full flex flex-col items-center justify-center px-6 pb-75 bg-white relative"
+            className="w-full flex flex-col items-center justify-center px-6 pb-75 relative"
         >
             {/* Heading */}
             <FadeInSection>

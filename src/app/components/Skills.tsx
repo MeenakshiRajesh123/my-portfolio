@@ -70,7 +70,7 @@ export default function Skills() {
             <motion.div
                 className="w-full relative flex flex-col justify-center items-center rounded-xl shadow-lg p-8"
                 style={{
-                    background: "linear-gradient(180deg, #6F00FF 0%, #F0E5FF 100%)",
+                    background: "linear-gradient(180deg, #6F00FF 0%, #6F00FF 100%)",
                     minHeight: "500px",
                 }}
                 initial={{ opacity: 0, y: 50 }}
